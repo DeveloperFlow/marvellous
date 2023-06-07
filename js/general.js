@@ -108,7 +108,7 @@ function uwContact(){
 function waContact(){
     var phone = "+2349161553359"
     var message = "Hello Marvellous, I saw your portfolio and want to speak with you"
-    widow.open("https://wa.me/"+phone+"?text="+message)
+    window.open("https://wa.me/"+phone+"?text="+message)
 }
 
 
