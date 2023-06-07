@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/lib/css/literal.css">
+    <link rel="stylesheet" href="/lib/css/ui.css">
+    <link rel="stylesheet" href="css/general.css">
+    <script defer src="/lib/js/basics.js"></script>
+    <script defer src="js/skills.js"></script>
+    <script defer src="projects/projects.js"></script>
+    <script defer src="js/general.js"></script>
+    <title>Meet Marvellous</title>
+    <style>
+        body{padding:0; margin:0}
+        body.not-loaded #main{display:none}
+        #before-load{position:fixed; width:100%; height:100%; top:0}
+        #animation-container{padding:2%; text-align: center;}
+        #logo{font-size: 60px; color:#f00; font-weight: bold; border:2px dotted #000;
+        padding:6px; font-family: gagalin;}
+    </style>
+</head>
+<body class="my-fonts not-loaded">
+    <div id="before-load">
+        <div id="animation-container">
+            <span id="logo">M</span>
+        </div>
+    </div>
+    <script>
+        /*This is the script that handles the animation before the page loads*/
+        var beforeLoad = document.getElementById("before-load")
+        var animeContainer = beforeLoad.children[0]
+        var _$ = function(){
+            function adjust(){
+                var containerH = beforeLoad.clientHeight
+                var animeH = animeContainer.clientHeight
+                animeContainer.style.marginTop = ((containerH - animeH) / 2).toString() + "px"
+            }
+            adjust()
+            window.onresize = adjust
+        }()
+        var loadStart = Number(new Date())
+    </script>
+    <div id="main">
+        <div id="menu" class="ss-hide absolute fixed left full-height scrollable-v flex vcenter hcenter column">
+            <div class="menu-item center-text" id = "_intro">
+                <img class="icon mid" src="img/me.png">
+                <div>ME</div>
+            </div>
+            <div class="menu-item space-up center-text" id = "_skills">
+                <img class="icon mid" src="img/skills.png">
+                <div>SKILLS</div>
+            </div>
+            <div class="menu-item space-up center-text" id = "_projects">
+                <img class="icon mid" src="img/projects.png">
+                <div>PROJECTS</div>
+            </div>
+        </div>
+        <div id="intro" class="hfull flex vcenter hcenter column">
+            <h1>Hello,</h1>
+            <h1 class="name">I Am Marvellous and i am a Graphics Designer</h1>
+            <h2 class="quote">I love giving life to ideas or concepts through my work</h2>
+            <h2 class="contact-me">
+                You can reach me through any of the following platforms
+                <div class="platforms center-text space-up" id="contact-methods">
+                    <img class="icon mid pointer" src="img/email.png" name="email">
+                    <img class="icon mid pointer space-left" src="img/whatsapp.png" name="wa">
+                    <img class="icon mid pointer space-left" src="img/phone.png" name="phone">
+                    <img class="icon mid pointer space-left" src="img/upwork.png" name="uw">
+                </div>
+            </h2>
+        </div>
+        <div id="skills" class="scroll-n-view">
+            <h1 class="center-text computer-text">What I have to offer</h1>
+            <h3 class="center-text">Some of the things I do best</h3>
+            <div class="skills" id="skills-list"></div>
+        </div>
+        <div id="projects" class="scoll-n-view">
+            <h1 class="center-text computer-text">Past Work</h1>
+            <h3 class="center-text">Designs I have created in the past</h3>
+            <div class="projects" id="projects-list"></div>
+        </div>
+        <h2 class="contact-me center-text">
+           Contact Me
+           <div id="contact-platforms"></div>
+        </h2>
+    </div>
+</body>
+</html>
