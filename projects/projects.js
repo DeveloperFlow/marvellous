@@ -51,6 +51,6 @@ var Projects = [
         name:"Netflix Movie",
         description:"",
         category:["Netflix"],
-        image["netflix.jpg"]
+        image:["netflix.jpg"]
     }
 ]
