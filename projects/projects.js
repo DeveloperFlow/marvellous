@@ -46,5 +46,11 @@ var Projects = [
         description:"Birth day poster to be used in a social media post",
         category:["Social Media Post design"],
         image:["twins-bd.jpg"]
+    },
+    {
+        name:"Netflix Movie",
+        description:"",
+        category:["Netflix"],
+        image["netflix.jpg"]
     }
 ]
