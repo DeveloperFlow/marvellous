@@ -1,7 +1,11 @@
 /*class designs*/
 .computer-text{-webkit-text-fill-color: transparent; font-weight: bold; 
--webkit-text-stroke:1px #be0509;}
+-webkit-text-stroke:1px #000;}
 .scroll-n-view.visible.from-left{animation-name:from-left; animation-duration:.5s}
+.toggle-container input[type=checkbox]:checked + span.round{
+    background-color: #f00;
+}
+.full-view{background-color: #fff}
 
 #menu .space-up{margin-top:30%}
 #menu .menu-item{cursor:pointer; width:100%}
@@ -13,14 +17,14 @@
 background-size:contain; background-position: top;}
 
 #intro *{color:#f00; -webkit-text-fill-color: #fff; font-weight: bold;
--webkit-text-stroke:1px #be0509; text-align: center;}
+-webkit-text-stroke:1px #000; text-align: center;}
 #intro h1{margin:0}
-#intro h1.name{margin-top:1%;}
-#intro h2.quote{margin-bottom:0}
-#intro .contact-me{margin-top: 2%;}
+#intro h1.name{margin-top:1%; animation-name: from-left; animation-duration: 1s}
+#intro h1.salut{animation-name: from-left; animation-duration: 1s;}
+#intro h2.quote{margin-bottom:0; animation-name: from-right; animation-duration: 1s}
+#intro .contact-me{margin-top: 2%; animation-name: from-left; animation-duration: 1s}
 
 #skills h1, #skills h2{color:#f00}
-#skills h3{color:#444}
 #skills h3{margin-bottom:0}
 #skills .skills{margin:auto; max-width:700px; padding:2%}
 #skills .skills .skill{font-size:20px; color:#f00; font-weight: bold; border-radius: 25px;
@@ -28,12 +32,11 @@ background-color: #fff; text-align: center; border:2px solid #f00}
 #skills .skills .skill:hover{background-color: #f00; color:#fff}
 
 #projects h1{color:#f00}
-#projects h3{color:#444}
 #projects .projects{max-width:900px; margin:auto}
 #projects .projects .project{height:300px; width:290px; margin-left: 10px; float:left;
 text-align: center; color:#444}
 #projects .projects .name{font-weight:bold}
-#projects .projects img{width:100%; height:70%; object-fit: cover; border-radius: 25px;}
+#projects .projects img{width:100%; height:70%; object-fit: cover; border-radius: 8px;}
 /*projects responsive grid display wahala*/
 @media only screen and (max-width:1000px){
     #projects .projects{max-width:600px}
@@ -51,6 +54,22 @@ body.ss #main{width:100%; margin:0;}
 body.ss #intro{padding:2%}
 body.ss #skills{padding:2%}
 
+/*dark theme*/
+body.dark-theme{
+    background-color: #444;
+}
+body.dark-theme *{
+    color: #fff;
+}
+body.dark-theme .computer-text{
+    -webkit-text-stroke:1px #fff;
+}
+body.dark-theme #skills .skills .skill{
+    background-color: #444;
+}
+body.dark-theme .full-view{
+  background-color: #444
+}
 @media only screen and (min-width:700px){
     /*scroll bars*/
     ::-webkit-scrollbar{width:10px;}
@@ -60,6 +79,10 @@ body.ss #skills{padding:2%}
 }
 
 @keyframes from-left{
-    0%{translate:-50%}
+    0%{translate:-100%}
+    100%{translate:0}
+}
+@keyframes from-right{
+    0%{translate:100%}
     100%{translate:0}
 }
