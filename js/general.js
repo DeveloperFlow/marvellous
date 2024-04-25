@@ -22,6 +22,7 @@ window.onload = function(){
         adjust()
         addEvent(window,"resize",adjust)
         scrollNShow()
+        themeHandler()
     }
     function adjust(){
         var winDim = windowDim()
@@ -66,10 +67,8 @@ function iniSkills(){
         var  nameNode = document.createElement("span")
         nameNode.className = "name oneline"
         nameNode.innerHTML = name
-        var arrow = document.createElement("span")
-        arrow.innerHTML = "->"; arrow.className = "arrow"
 
-        append(skillNode,[nameNode,arrow])
+        append(skillNode,nameNode)
         skillsList.appendChild(skillNode); 
     }
 }
@@ -78,6 +77,7 @@ function iniProjects(){
     var projectsList = document.getElementById("projects-list")
     var numProjects = Projects.length
     var cf = document.createElement("div"); cf.className = "clear-fix"
+    var fv = new fullView()
     for(var i = 0; i < numProjects; i++){
         var project = Projects[i]
         var name = project.name
@@ -87,16 +87,22 @@ function iniProjects(){
         nameNode.className = "name"
         var image = document.createElement("img"); 
         image.src = "projects/images/" + project.image[0].toString()
+        setForFullView(image)
 
         append(projectNode,[image,nameNode])
         projectsList.appendChild(projectNode)
+    }
+    function setForFullView(image){
+        image.onclick = function(){
+          fv.open(image)
+        }
     }
     projectsList.appendChild(cf)
 }
 
 function emailContact(){
     var email = "Ohazuruikemarvellous34@gmail"
-    copy(email,function(){customAlert("Email address Copied"); location.href = "mailto://" + email})
+    copy(email,function(){customAlert("Email address Copied"); location.href = "mailto:" + email})
 }
 function phoneContact(){
     var phone = "+2349161553359"
@@ -158,4 +164,97 @@ function moveToSection(target){
     var docPos = getDocScroll()
     var top = Math.ceil(target.getBoundingClientRect().top + docPos)
     scroll(0,top)
+}
+
+function themeHandler(){
+    var theme;
+    getCurrentTheme();
+    setTheme()
+    var toggler = document.getElementById("theme-toggler")
+    toggler.checked = theme
+    toggler.onchange = toggleTheme
+    function getCurrentTheme(){
+        try{
+            theme = localStorage.getItem("theme") == 1
+        }
+        catch(err){
+          theme = false;
+          console.error("seems like access to local storage is denied")
+        }
+    }
+    function setTheme(){
+        if(theme){
+            changeClass(document.body,"","dark-theme")
+        }
+        else{
+            changeClass(document.body,"dark-theme","")
+        }
+        try{
+            localStorage.setItem("theme",(theme)?1:0)
+        }
+        catch(err){
+            console.error("seems like access to local storage is denied")
+        }
+    }
+    function toggleTheme(){
+        theme = toggler.checked
+        setTheme()
+    }
+}
+
+function fullView(){
+    var container
+    var content
+    var self = this
+    this.open = function(elm){
+        if(!container){
+            container = document.createElement("div")
+            container.className = "fixed top left full-width full-height scrollable-v flex vcenter full-view hcenter"
+
+            var control = document.createElement("div")
+            control.className="minor-pad fixed top left full-width"
+            var closeBtn = document.createElement("button")
+            closeBtn.className = "pointer round"
+            closeBtn.style.width = "25px"
+            closeBtn.style.height = "25px"
+            closeBtn.style.background = "rgba(100,100,100,0.5)"
+            closeBtn.style.border = "1px solid"
+            closeBtn.innerHTML = "x"
+            closeBtn.onclick = closeFullView
+            control.append(closeBtn)
+            container.appendChild(control)
+        }
+        if(content){
+            remove(content)
+        }
+        content = elm.cloneNode(true)
+        document.body.appendChild(container)
+        this.setDim()
+        container.appendChild(content)
+        addEvent(window,"resize",adjust)
+    }
+    this.close = function(){
+        remove(container)
+        removeEvent(window,"resize",adjust)
+    }
+    this.setDim = function(){
+        var elm = content
+        var ar = elm.naturalWidth/elm.naturalHeight
+        var containerDim = elementDim(container)
+        var widthAtMaxHeight = ar * containerDim.h
+        if(widthAtMaxHeight > containerDim.w){
+            elm.style.width = "100%"
+            elm.style.height = "auto"
+        }
+        else{
+            elm.style.height = "100%"
+            elm.style.width = "auto"
+        }
+    }
+    function closeFullView(){
+      self.close()
+    }
+    function adjust(){
+        self.setDim()
+    }
 }
