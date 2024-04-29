@@ -101,12 +101,12 @@ function iniProjects(){
 }
 
 function emailContact(){
-    var email = "Ohazuruikemarvellous34@gmail"
-    copy(email,function(){customAlert("Email address Copied"); location.href = "mailto:" + email})
+    var email = "Ohazuruikemarvellous34@gmail.com"
+    location.href = "mailto:" + email + "?subject=Interest%20in%20working%20with%20you&body=Hello%20marvellous%20I%20saw%20your%20online%20portfolio%20and%20would%20like%20to%20know%20more"
 }
 function phoneContact(){
     var phone = "+2349161553359"
-    copy(phone,function(){customAlert("Phone Number Copied"); location.href = "phone://" + phone})
+    location.href = "tel:" + phone
 }
 function uwContact(){
     
