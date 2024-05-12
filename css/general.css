@@ -1,6 +1,6 @@
 /*class designs*/
 .computer-text{-webkit-text-fill-color: transparent; font-weight: bold; 
--webkit-text-stroke:1px #000;}
+-webkit-text-stroke:1px #f00;}
 .scroll-n-view.visible.from-left{animation-name:from-left; animation-duration:.5s}
 .toggle-container input[type=checkbox]:checked + span.round{
     background-color: #f00;
@@ -17,7 +17,7 @@
 background-size:contain; background-position: top;}
 
 #intro *{color:#f00; -webkit-text-fill-color: #fff; font-weight: bold;
--webkit-text-stroke:1px #000; text-align: center;}
+-webkit-text-stroke:1px #f00; text-align: center;}
 #intro h1{margin:0}
 #intro h1.name{margin-top:1%; animation-name: from-left; animation-duration: 1s}
 #intro h1.salut{animation-name: from-left; animation-duration: 1s;}
