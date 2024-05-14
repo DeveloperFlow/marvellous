@@ -63,7 +63,7 @@ function iniSkills(){
         var skill = Skills[i]
         var name = skill.name
         var skillNode = document.createElement("div")
-        skillNode.className = "pointer skill space-up minor-pad scroll-n-view"
+        skillNode.className = "pointer skill space-up minor-pad"
         var  nameNode = document.createElement("span")
         nameNode.className = "name oneline"
         nameNode.innerHTML = name
@@ -89,7 +89,7 @@ function iniProjects(){
         image.src = "projects/images/" + project.image[0].toString()
         setForFullView(image)
 
-        append(projectNode,[image,nameNode])
+        append(projectNode,[image])
         projectsList.appendChild(projectNode)
     }
     function setForFullView(image){
